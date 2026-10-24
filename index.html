@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>QR — генератор QR-кодов</title>
+  <meta name="description" content="Генератор QR-кодов для ссылки, текста, Wi-Fi и визитки. Свои цвета, форма точек, скачивание PNG и SVG.">
+  <meta name="theme-color" content="#f4f4f5">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>QR<span>генератор</span></h1>
+      <p>Ссылка, Wi-Fi или визитка — в один квадратик.</p>
+    </header>
+
+    <div class="layout">
+      <section class="panel">
+        <nav class="types" role="tablist">
+          <button class="type is-active" data-type="url">🔗 Ссылка</button>
+          <button class="type" data-type="text">📝 Текст</button>
+          <button class="type" data-type="wifi">📶 Wi-Fi</button>
+          <button class="type" data-type="vcard">👤 Визитка</button>
+        </nav>
+
+        <form id="form" autocomplete="off">
+          <div class="fields" data-for="url">
+            <label class="field"><span>Адрес сайта</span><input name="url" value="https://github.com" inputmode="url"></label>
+          </div>
+          <div class="fields" data-for="text" hidden>
+            <label class="field"><span>Текст</span><textarea name="text" rows="4" maxlength="800">Привет! Этот QR-код сделан в браузере 👋</textarea></label>
+          </div>
+          <div class="fields" data-for="wifi" hidden>
+            <label class="field"><span>Название сети (SSID)</span><input name="ssid" placeholder="MyHomeWiFi"></label>
+            <label class="field"><span>Пароль</span><input name="wpass" placeholder="Пароль сети"></label>
+            <label class="field"><span>Шифрование</span>
+              <select name="enc"><option value="WPA">WPA / WPA2 / WPA3</option><option value="WEP">WEP</option><option value="nopass">Без пароля</option></select>
+            </label>
+            <label class="check"><input type="checkbox" name="hidden"> Скрытая сеть</label>
+          </div>
+          <div class="fields" data-for="vcard" hidden>
+            <div class="two">
+              <label class="field"><span>Имя</span><input name="first" placeholder="Иван"></label>
+              <label class="field"><span>Фамилия</span><input name="last" placeholder="Иванов"></label>
+            </div>
+            <label class="field"><span>Телефон</span><input name="tel" inputmode="tel" placeholder="+7 900 000-00-00"></label>
+            <label class="field"><span>Почта</span><input name="email" inputmode="email" placeholder="mail@example.com"></label>
+            <label class="field"><span>Компания или должность</span><input name="org" placeholder="Необязательно"></label>
+          </div>
+        </form>
+
+        <h3>Оформление</h3>
+        <div class="design">
+          <label class="color"><input type="color" id="fg" value="#18181b"><span>Точки</span></label>
+          <label class="color"><input type="color" id="bg" value="#ffffff"><span>Фон</span></label>
+          <label class="field field--sm"><span>Форма</span>
+            <select id="shape"><option value="square">Квадраты</option><option value="round">Скруглённые</option><option value="dots">Точки</option></select>
+          </label>
+          <label class="field field--sm"><span>Защита</span>
+            <select id="ecc"><option value="L">Низкая</option><option value="M" selected>Средняя</option><option value="Q">Высокая</option><option value="H">Максимум</option></select>
+          </label>
+        </div>
+        <div class="presets" id="presets" aria-label="Готовые цвета"></div>
+      </section>
+
+      <section class="preview">
+        <div class="qr-card" id="qrCard">
+          <canvas id="qr" width="320" height="320" aria-label="QR-код"></canvas>
+        </div>
+        <p class="warn" id="warn" hidden></p>
+        <p class="info" id="info"></p>
+        <div class="downloads">
+          <button class="btn btn--primary" id="dlPng">Скачать PNG</button>
+          <button class="btn" id="dlSvg">SVG</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
