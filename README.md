@@ -2,7 +2,7 @@
 
 **Генератор QR-кодов для ссылки, текста, Wi-Fi и визитки.**
 
-### ▶️ [Открыть](https://mmmaksmog-commits.github.io/qr-generator/)
+### ▶️ [Открыть](https://mysik-portfolio.vercel.app/qr-generator/)
 
 Работает на телефоне и на ПК, без установки и регистрации.
 
@@ -30,4 +30,4 @@ python3 -m http.server 8000
 
 ---
 
-Часть [портфолио](https://mmmaksmog-commits.github.io/).
+Часть [портфолио](https://mysik-portfolio.vercel.app/).
